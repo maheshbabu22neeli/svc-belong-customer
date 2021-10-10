@@ -1,0 +1,666 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "",
+      "variables": {}
+    }
+  ],
+  "info": {
+    "version": "v1.0.0",
+    "title": "svc-belong-customer",
+    "description": "",
+    "termsOfService": "",
+    "contact": {},
+    "license": {
+      "name": ""
+    }
+  },
+  "paths": {
+    "/v1/belong/phonenumbers": {
+      "get": {
+        "summary": "All PhoneNumbers",
+        "operationId": "AllPhoneNumbers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "All PhoneNumbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                },
+                "example": {
+                  "records": 15,
+                  "phone": [
+                    {
+                      "number": "0469001001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469001002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469001003",
+                      "type": "Mobile",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469002001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469002002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469002003",
+                      "type": "Mobile",
+                      "state": "InActive"
+                    },
+                    {
+                      "number": "0469003001",
+                      "type": "Office",
+                      "state": "InActive"
+                    },
+                    {
+                      "number": "0469003002",
+                      "type": "Home",
+                      "state": "InActive"
+                    },
+                    {
+                      "number": "0469003003",
+                      "type": "Mobile",
+                      "state": "InActive"
+                    },
+                    {
+                      "number": "0469004001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469004002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469004003",
+                      "type": "Mobile",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469005001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469005002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469005003",
+                      "type": "Mobile",
+                      "state": "Active"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500"
+                },
+                "example": {
+                  "errorCode": 500,
+                  "errorMessage": "Something went wrong, please contact team"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/belong/phonenumbers?customerId={customerId}": {
+      "get": {
+        "summary": "All PhoneNumbers of customer",
+        "operationId": "AllPhoneNumbersOfCustomer",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All PhoneNumbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                },
+                "example": {
+                  "records": 3,
+                  "phone": [
+                    {
+                      "number": "0469001001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469001002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469001003",
+                      "type": "Mobile",
+                      "state": "Active"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "All PhoneNumbers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400"
+                },
+                "example": {
+                  "errorCode": 400,
+                  "errorMessage": "invalid customerId, required format is CUS[0-9]{3}"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500"
+                },
+                "example": {
+                  "errorCode": 500,
+                  "errorMessage": "Something went wrong, please contact team"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/belong/customers": {
+      "get": {
+        "summary": "All Customers",
+        "operationId": "AllCustomers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "All Customers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                },
+                "example": {
+                  "records": 5,
+                  "customer": [
+                    {
+                      "id": "CUS001",
+                      "name": "Mahesh Babu",
+                      "phone": [
+                        {
+                          "number": "0469001001",
+                          "type": "Office",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469001002",
+                          "type": "Home",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469001003",
+                          "type": "Mobile",
+                          "state": "Active"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "CUS002",
+                      "name": "Gopi Krishna",
+                      "phone": [
+                        {
+                          "number": "0469002001",
+                          "type": "Office",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469002002",
+                          "type": "Home",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469002003",
+                          "type": "Mobile",
+                          "state": "InActive"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "CUS003",
+                      "name": "Balu",
+                      "phone": [
+                        {
+                          "number": "0469003001",
+                          "type": "Office",
+                          "state": "InActive"
+                        },
+                        {
+                          "number": "0469003002",
+                          "type": "Home",
+                          "state": "InActive"
+                        },
+                        {
+                          "number": "0469003003",
+                          "type": "Mobile",
+                          "state": "InActive"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "CUS004",
+                      "name": "Sarat Chandra",
+                      "phone": [
+                        {
+                          "number": "0469004001",
+                          "type": "Office",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469004002",
+                          "type": "Home",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469004003",
+                          "type": "Mobile",
+                          "state": "Active"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "CUS005",
+                      "name": "Mahendar",
+                      "phone": [
+                        {
+                          "number": "0469005001",
+                          "type": "Office",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469005002",
+                          "type": "Home",
+                          "state": "Active"
+                        },
+                        {
+                          "number": "0469005003",
+                          "type": "Mobile",
+                          "state": "Active"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500"
+                },
+                "example": {
+                  "errorCode": 500,
+                  "errorMessage": "Something went wrong, please contact team"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/belong/customers?customerId={customerId}": {
+      "get": {
+        "summary": "Customer",
+        "operationId": "CustomerDetails",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All Customers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                },
+                "example": {
+                  "id": "CUS001",
+                  "name": "Mahesh Babu",
+                  "phone": [
+                    {
+                      "number": "0469001001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469001002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469001003",
+                      "type": "Mobile",
+                      "state": "Active"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "All Customers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/404"
+                },
+                "example": {
+                  "errorCode": 404,
+                  "errorMessage": "customer record not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500"
+                },
+                "example": {
+                  "errorCode": 500,
+                  "errorMessage": "Something went wrong, please contact team"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/belong/customers/{customerId}": {
+      "patch": {
+        "summary": "Activate PhoneNumber Method 1",
+        "operationId": "ActivatePhoneNumberMethod1",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/customerId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "500": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500"
+                },
+                "example": {
+                  "errorCode": 500,
+                  "errorMessage": "Something went wrong, please contact team"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "example": [
+                  {
+                    "op": "replace",
+                    "path": "/phone/0/state",
+                    "value": "Active"
+                  }
+                ]
+              },
+              "example": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/phone/0/state\",\n        \"value\": \"Active\"\n    }\n]"
+            }
+          }
+        }
+      }
+    },
+    "/v1/belong/phoneNumbers/{phoneNumber}": {
+      "patch": {
+        "summary": "Activate PhoneNumber Method 2",
+        "operationId": "ActivatePhoneNumberMethod2",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/phoneNumber"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/200"
+                },
+                "example": {
+                  "id": "CUS002",
+                  "name": "Gopi Krishna",
+                  "phone": [
+                    {
+                      "number": "0469002001",
+                      "type": "Office",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469002002",
+                      "type": "Home",
+                      "state": "Active"
+                    },
+                    {
+                      "number": "0469002003",
+                      "type": "Mobile",
+                      "state": "Active"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/400"
+                },
+                "example": {
+                  "errorCode": 400,
+                  "errorMessage": "invalid phoneNumber, required format [0-9]{10}"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Activate PhoneNumber Method 2",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/500"
+                },
+                "example": {
+                  "errorCode": 500,
+                  "errorMessage": "Something went wrong, please contact team"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "example": {
+                  "state": "Active"
+                }
+              },
+              "example": "{\r\n    \"state\" : \"Active\"\r\n}"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "integer",
+            "description": "",
+            "default": 15
+          },
+          "phone": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string",
+                  "description": "",
+                  "default": "0469001001"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "",
+                  "default": "Office"
+                },
+                "state": {
+                  "type": "string",
+                  "description": "",
+                  "default": "Active"
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "",
+            "default": 400
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "",
+            "default": "phone number already in active state"
+          }
+        }
+      },
+      "404": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "",
+            "default": 404
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "",
+            "default": "customer record not found"
+          }
+        }
+      },
+      "500": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "integer",
+            "description": "",
+            "default": 500
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "",
+            "default": "Something went wrong, please contact team"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "customerId": {
+        "name": "customerId",
+        "in": "path",
+        "required": true,
+        "style": "simple",
+        "schema": {
+          "type": "string",
+          "example": "customerId"
+        }
+      },
+      "phoneNumber": {
+        "name": "phoneNumber",
+        "in": "path",
+        "required": true,
+        "style": "simple",
+        "schema": {
+          "type": "string",
+          "example": "phoneNumber"
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [],
+  "externalDocs": {
+    "url": "",
+    "description": ""
+  }
+}
