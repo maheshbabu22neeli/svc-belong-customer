@@ -17,6 +17,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<maven.compiler.version>3.6.0</maven.compiler.version>
 	</properties>
 
 	<dependencies>
@@ -66,27 +67,25 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<compilerArgument>-Werror</compilerArgument>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<!--<version>3.0.0-M5</version>-->
 				<configuration>
-					<localCheckout>true</localCheckout>
-					<preparationGoals>clean verify</preparationGoals>
-					<!--<tagNameFormat>v@{project.version}</tagNameFormat>-->
-					<!--<autoVersionSubmodules>true</autoVersionSubmodules>-->
-					<!--<releaseProfiles>releases</releaseProfiles>-->
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-scm-plugin</artifactId>
-						<version>1.8.1</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "3b9ab758-979a-49a2-97c5-d40a29ef184d",
+		"name": "svc-belong-customer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All PhoneNumbers: http://localhost:8080/v1/belong/phonenumber",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/belong/phonenumbers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"belong",
+						"phonenumbers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All PhoneNumbers by CustomerId: http://localhost:8080/v1/belong/phonenumber?customerId=CUS001",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/belong/phonenumbers?customerId=CUS00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"belong",
+						"phonenumbers"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "CUS00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Customers: http://localhost:8080/v1/belong/customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/belong/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"belong",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer By ID: http://localhost:8080/v1/belong/customer?customerId=CUS001",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/belong/customers?customerId=CUS001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"belong",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "CUS001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate PhoneNumber Method 1: http://localhost:8080/v1/belong/customers/CUS001",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/phone/0/state\",\n        \"value\": \"Active\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/belong/customers/CUS001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"belong",
+						"customers",
+						"CUS001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate PhoneNumber Method 2: http://localhost:8080/v1/belong/phoneNumbers/0469001001",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"state\" : \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/belong/phoneNumbers/0469001001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"belong",
+						"phoneNumbers",
+						"0469001001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
