@@ -81,7 +81,7 @@ public class PhoneNumberControllerTest {
     @Test
     public void test_getPhoneNumbers_where_customerId_null_return_all_PhoneNumbers() {
 
-        String jsonString = JsonUtils.readJsonFile("/mockData/allPhoneNumbers.json");
+        String jsonString = JsonUtils.readJsonFile("/mockData/all_phone_numbers.json");
         List<Phone> mockPhoneList = JsonUtils.stringToModelList(jsonString, Phone.class);
         Assert.assertNotNull(mockPhoneList);
 

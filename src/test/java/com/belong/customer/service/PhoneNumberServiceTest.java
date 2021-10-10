@@ -46,7 +46,7 @@ public class PhoneNumberServiceTest {
     @Test
     public void test_getPhoneNumbers_customer_id_null_return_all_PhoneNumbers() {
 
-        String jsonString = JsonUtils.readJsonFile("/mockData/allPhoneNumbers.json");
+        String jsonString = JsonUtils.readJsonFile("/mockData/all_phone_numbers.json");
         List<Phone> mockPhoneList = JsonUtils.stringToModelList(jsonString, Phone.class);
         Assert.assertNotNull(mockPhoneList);
 
@@ -69,7 +69,7 @@ public class PhoneNumberServiceTest {
     public void test_getPhoneNumbers_customer_id_notnull_return_only_customer_phone_numbers() {
 
         String customerId = "CUS001";
-        String jsonString = JsonUtils.readJsonFile("/mockData/customerPhoneNumbers.json");
+        String jsonString = JsonUtils.readJsonFile("/mockData/customer_phone_numbers.json");
         List<Phone> mockPhoneList = JsonUtils.stringToModelList(jsonString, Phone.class);
         Assert.assertNotNull(mockPhoneList);
 
