@@ -1,0 +1,21 @@
+{
+  "id": "CUS007",
+  "name": "Mahesh Babu 2",
+  "phone": [
+    {
+      "number": "0469007001",
+      "type": "Office",
+      "state": "Active"
+    },
+    {
+      "number": "0469007002",
+      "type": "Home",
+      "state": "Active"
+    },
+    {
+      "number": "0469007003",
+      "type": "Mobile",
+      "state": "Active"
+    }
+  ]
+}

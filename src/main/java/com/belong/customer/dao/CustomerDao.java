@@ -81,16 +81,6 @@ public class CustomerDao {
         return customerList;
     }
 
-    public List<Customer> getCustomersById(final String custId) {
-        List<Customer> customerList = new ArrayList<>();
-        customersMap.forEach((customerId, customer) -> {
-            if (customer.getId().equals(custId)) {
-                customerList.add(customer);
-            }
-        });
-        return customerList;
-    }
-
     public Customer getCustomerById(final String customerId) {
         return customersMap.get(customerId);
     }

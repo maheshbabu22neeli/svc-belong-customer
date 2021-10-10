@@ -73,4 +73,43 @@ public class CustomerDaoTest {
     // Customer Test Cases
     // ================================
 
+    @Test
+    public void test_getCustomers_return_all_Customers() {
+
+        List<Customer> customerList = customerDao.getCustomers();
+
+        Assert.assertNotNull(customerList);
+        Assert.assertEquals(5, customerList.size());
+    }
+
+    @Test
+    public void test_getCustomers_return_single_customer() {
+
+        Customer customer = customerDao.getCustomerById("CUS002");
+
+        Assert.assertNotNull(customer);
+        Assert.assertEquals("CUS002", customer.getId());
+        Assert.assertEquals("Gopi Krishna", customer.getName());
+        Assert.assertNotNull(customer.getPhonesList());
+    }
+
+    @Test
+    public void test_saveCustomer() {
+        Customer customer = JsonUtils.jsonFileToModel("/mockData/new_customer.json", Customer.class);
+
+        customerDao.saveCustomer(customer);
+        Customer addedCustomer = customerDao.getCustomerById("CUS007");
+
+        Assert.assertNotNull(addedCustomer);
+        Assert.assertEquals("CUS007", customer.getId());
+        Assert.assertEquals("Mahesh Babu 2", customer.getName());
+        Assert.assertNotNull(customer.getPhonesList());
+    }
+
+
+
+
+
+
+
 }
