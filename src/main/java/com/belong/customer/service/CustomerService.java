@@ -35,17 +35,15 @@ public class CustomerService {
         this.customerHelper = customerHelper;
     }
 
-    public ResponseEntity<Object> getCustomers(final String customerId) {
+    public ResponseEntity<?> getCustomers(final String customerId) {
 
         List<Customer> customerList;
-        ResponseEntity<Object> responseEntity;
-
         if (customerId == null)
             customerList = customerDao.getCustomers();
         else
             customerList = customerDao.getCustomersById(customerId);
 
-
+        ResponseEntity<?> responseEntity;
         if (!CollectionUtils.isEmpty(customerList)) {
             responseEntity = customerHelper.createSuccessResponse(customerList, HttpStatus.OK);
             LOGGER.info("GET Customer, Response sent: {}", responseEntity.toString());
@@ -56,36 +54,6 @@ public class CustomerService {
         }
 
         return responseEntity;
-    }
-
-    public ResponseEntity<Object> activatePhoneNumber(
-            final String customerId, final JsonPatch jsonPatch) throws JsonProcessingException, JsonPatchException {
-        LOGGER.info("jsonPatch: {}", jsonPatch.toString());
-
-        ResponseEntity<Object> responseEntity;
-
-        Customer customer = customerDao.getCustomerById(customerId);
-        JsonNode customerJsonNode = JsonUtils.convertModelToJsonNode(customer);
-        if (ObjectUtils.isEmpty(customerJsonNode)) {
-            responseEntity = customerHelper.createFailureResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong, please contact team");
-
-            LOGGER.error("PATCH ActivatePhoneNumber, Response sent: {}", responseEntity.toString());
-            return responseEntity;
-        }
-
-        JsonNode updatedJsonNode = jsonPatch.apply(customerJsonNode);
-
-        Customer updatedCustomer = JsonUtils.convertStringToModel(updatedJsonNode.toString(), Customer.class);
-        if (ObjectUtils.isEmpty(updatedCustomer)) {
-            responseEntity = customerHelper.createFailureResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong, please contact team");
-
-            LOGGER.error("PATCH ActivatePhoneNumber, Response sent: {}", responseEntity.toString());
-            return responseEntity;
-        }
-
-        return customerHelper.createSuccessResponse(updatedCustomer, HttpStatus.ACCEPTED);
     }
 
 }

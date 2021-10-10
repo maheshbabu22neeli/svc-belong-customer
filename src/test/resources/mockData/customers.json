@@ -1,0 +1,109 @@
+{
+  "customer": [
+    {
+      "id" : "CUS001",
+      "name" : "Mahesh Babu",
+      "phone" : [
+        {
+          "number" : "0469001001",
+          "state" : "InActive",
+          "type" : "Office"
+        },
+        {
+          "number" : "0469001002",
+          "state" : "Active",
+          "type" : "Home"
+        },
+        {
+          "number" : "0469001003",
+          "state" : "Active",
+          "type" : "Mobile"
+        }
+      ]
+    },
+    {
+      "id" : "CUS002",
+      "name" : "Gopi Krishna",
+      "phone" : [
+        {
+          "number" : "0469002001",
+          "state" : "Active",
+          "type" : "Office"
+        },
+        {
+          "number" : "0469002002",
+          "state" : "Active",
+          "type" : "Home"
+        },
+        {
+          "number" : "0469002003",
+          "state" : "InActive",
+          "type" : "Mobile"
+        }
+      ]
+    },
+    {
+      "id" : "CUS003",
+      "name" : "Balu",
+      "phone" : [
+        {
+          "number" : "0469003001",
+          "state" : "InActive",
+          "type" : "Office"
+        },
+        {
+          "number" : "0469003002",
+          "state" : "InActive",
+          "type" : "Home"
+        },
+        {
+          "number" : "0469003003",
+          "state" : "InActive",
+          "type" : "Mobile"
+        }
+      ]
+    },
+    {
+      "id" : "CUS004",
+      "name" : "Sarat Chandra",
+      "phone" : [
+        {
+          "number" : "0469004001",
+          "state" : "Active",
+          "type" : "Office"
+        },
+        {
+          "number" : "0469004002",
+          "state" : "Active",
+          "type" : "Home"
+        },
+        {
+          "number" : "0469004003",
+          "state" : "Active",
+          "type" : "Mobile"
+        }
+      ]
+    },
+    {
+      "id" : "CUS005",
+      "name" : "Mahendar",
+      "phone" : [
+        {
+          "number" : "0469005001",
+          "state" : "Active",
+          "type" : "Office"
+        },
+        {
+          "number" : "0469005002",
+          "state" : "Active",
+          "type" : "Home"
+        },
+        {
+          "number" : "0469005003",
+          "state" : "Active",
+          "type" : "Mobile"
+        }
+      ]
+    }
+  ]
+}

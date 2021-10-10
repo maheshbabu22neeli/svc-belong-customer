@@ -18,19 +18,20 @@ import java.util.ArrayList;
 @Service
 public class CustomerDao {
 
-    private Map<String, Customer> customersMap = new HashMap<>();
+    private Map<String, Customer> customersMap;
 
-    private String customerDataFileName;
+    private String customerDataFilePath;
 
     @Autowired
     public CustomerDao(
-            @Value("${belong.initial.customer.data.file}") final String customerDataFileName) {
-        this.customerDataFileName = customerDataFileName;
+            @Value("${belong.initial.customer.data.file}") final String customerDataFilePath) {
+        this.customerDataFilePath = customerDataFilePath;
     }
 
     @PostConstruct
     public void loadInitialCustomers() {
-        Customers customers = JsonUtils.jsonFileToModel(customerDataFileName, Customers.class);
+        customersMap = new HashMap<>();
+        Customers customers = JsonUtils.jsonFileToModel(customerDataFilePath, Customers.class);
         customers.getCustomerList().forEach(customer -> {
             customersMap.put(customer.getId(), customer);
         });
@@ -47,8 +48,8 @@ public class CustomerDao {
         return phoneList;
     }
 
-    public List<Phone> getPhoneNumbersByCustomerId(final String custId) {
-        Customer customer = customersMap.get(custId);
+    public List<Phone> getPhoneNumbersByCustomerId(final String customerId) {
+        Customer customer = customersMap.get(customerId);
         if (ObjectUtils.isEmpty(customer)) {
             return null;
         }
@@ -90,12 +91,12 @@ public class CustomerDao {
         return customerList;
     }
 
-    public Customer getCustomerById(final String custId) {
-        return customersMap.get(custId);
+    public Customer getCustomerById(final String customerId) {
+        return customersMap.get(customerId);
     }
 
-    public Customer saveCustomer(final Customer customer) {
-        return customersMap.put(customer.getId(), customer);
+    public void saveCustomer(final Customer customer) {
+        customersMap.put(customer.getId(), customer);
     }
 
 }

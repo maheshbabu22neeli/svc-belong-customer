@@ -13,19 +13,15 @@ import java.util.regex.Pattern;
 @Component
 public class PhoneNumberHelper {
 
-    public boolean isValidPhoneNumber(final String phoneNumber) {
-        return Pattern.matches("[0-9]{10}", phoneNumber);
-    }
-
-    public ResponseEntity<Object> createSuccessResponse(final List<Phone> phoneList, final HttpStatus httpStatus) {
+    public ResponseEntity<?> createSuccessResponse(final List<Phone> phoneList, final HttpStatus httpStatus) {
         return new ResponseEntity<>(new PhoneNumberResponse(phoneList), httpStatus);
     }
 
-    public ResponseEntity<Object> createSuccessResponse(final Customer customer, final HttpStatus httpStatus) {
+    public ResponseEntity<?> createSuccessResponse(final Customer customer, final HttpStatus httpStatus) {
         return new ResponseEntity<>(customer, httpStatus);
     }
 
-    public ResponseEntity<Object> createFailureResponse(int errorCode, String errorMessage) {
+    public ResponseEntity<?> createFailureResponse(int errorCode, String errorMessage) {
         return new ResponseEntity<>(new PhoneNumberResponse(errorCode, errorMessage), HttpStatus.valueOf(errorCode));
     }
 

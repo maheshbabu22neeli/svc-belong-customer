@@ -15,6 +15,10 @@ public enum PhoneNumberStateEnum {
         this.value = value;
     }
 
+    public String toString() {
+        return this.value;
+    }
+
     static {
         createPhoneNumberEnumMap();
     }

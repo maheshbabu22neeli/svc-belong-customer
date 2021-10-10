@@ -2,14 +2,18 @@ package com.belong.customer.utils;
 
 import com.belong.customer.model.Customer;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonUtils {
 
@@ -20,7 +24,7 @@ public class JsonUtils {
         return stringToModel(jsonContent, tClass);
     }
 
-    private static String readJsonFile(final String path) {
+    public static String readJsonFile(final String path) {
         try {
             ClassPathResource classPathResource = new ClassPathResource(path);
             InputStream inputStream = classPathResource.getInputStream();
@@ -32,7 +36,7 @@ public class JsonUtils {
         return null;
     }
 
-    private static <T> T stringToModel(final String json, final Class<T> tClass) {
+    public static <T> T stringToModel(final String json, final Class<T> tClass) {
         try {
             return MAPPER.readValue(json, tClass);
         } catch (JsonProcessingException e) {
@@ -50,14 +54,15 @@ public class JsonUtils {
         return null;
     }
 
-    public static <T> T convertStringToModel(final String value,
-                                             final Class<T> customerClass) {
+    public static <T> List<T> stringToModelList(String jsonString, Class<T> tClass) {
+        CollectionType collectionType = MAPPER.getTypeFactory().constructCollectionType(ArrayList.class, tClass);
         try {
-            return MAPPER.readValue(value, customerClass);
-        } catch (JsonProcessingException e) {
+            return MAPPER.readValue(jsonString, collectionType);
+        } catch (final JsonProcessingException e) {
             e.printStackTrace();
         }
         return null;
-
     }
+
+
 }

@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.regex.Pattern;
+
 @RestController
 @RequestMapping("${service.basePath}")
 public class PhoneNumberController {
@@ -30,26 +32,22 @@ public class PhoneNumberController {
 
     private PhoneNumberHelper phoneNumberHelper;
 
-    private CustomerHelper customerHelper;
-
     @Autowired
     public PhoneNumberController(final PhoneNumberService phoneNumberService,
-                                 final PhoneNumberHelper phoneNumberHelper,
-                                 final CustomerHelper customerHelper) {
+                                 final PhoneNumberHelper phoneNumberHelper) {
         this.phoneNumberService = phoneNumberService;
         this.phoneNumberHelper = phoneNumberHelper;
-        this.customerHelper = customerHelper;
     }
 
     @GetMapping(path = "/phonenumbers")
-    public ResponseEntity<Object> getPhoneNumbers(
+    public ResponseEntity<?> getPhoneNumbers(
             @RequestParam(required = false) final String customerId) {
         LOGGER.info("GET PhoneNumber, Request Received, where customerId: {}", customerId);
 
-        ResponseEntity<Object> responseEntity;
+        ResponseEntity<?> responseEntity;
         try {
 
-            if (StringUtils.hasLength(customerId) && !customerHelper.isValidCustomerId(customerId)) {
+            if (StringUtils.hasLength(customerId) && !Pattern.matches("CUS[0-9]{3}", customerId)) {
                 responseEntity = phoneNumberHelper.createFailureResponse(
                         HttpStatus.BAD_REQUEST.value(), "invalid customerId, required format is CUS[0-9]{3}");
                 LOGGER.error("GET PhoneNumber, Response sent: {}", responseEntity.toString());
@@ -71,12 +69,12 @@ public class PhoneNumberController {
     }
 
     @PatchMapping(path = "/phoneNumbers/{phoneNumber}")
-    public ResponseEntity<Object> activatePhoneNumber(
+    public ResponseEntity<?> activatePhoneNumber(
             @PathVariable String phoneNumber, @RequestBody State state) {
         LOGGER.info("Activate PhoneNumber, Request Received, where phoneNumber: {}, body: {}",
-                phoneNumber, state.toString());
+                phoneNumber, state);
 
-        ResponseEntity<Object> responseEntity;
+        ResponseEntity<?> responseEntity;
         try {
             if (!StringUtils.hasLength(phoneNumber)) {
                 responseEntity = phoneNumberHelper.createFailureResponse(
@@ -85,7 +83,7 @@ public class PhoneNumberController {
                 return responseEntity;
             }
 
-            if (StringUtils.hasLength(phoneNumber) && !phoneNumberHelper.isValidPhoneNumber(phoneNumber)) {
+            if (StringUtils.hasLength(phoneNumber) && !Pattern.matches("[0-9]{10}", phoneNumber)) {
                 responseEntity = phoneNumberHelper.createFailureResponse(
                         HttpStatus.BAD_REQUEST.value(), "invalid phoneNumber, required format [0-9]{10}");
                 LOGGER.error("Activate PhoneNumber, Response sent: {}", responseEntity.toString());
@@ -94,7 +92,7 @@ public class PhoneNumberController {
 
             if (ObjectUtils.isEmpty(state)) {
                 responseEntity = phoneNumberHelper.createFailureResponse(
-                        HttpStatus.BAD_REQUEST.value(), "phoneNumber state cannot be Empty");
+                        HttpStatus.BAD_REQUEST.value(), "activatePhoneNumber body cannot be Empty");
                 LOGGER.error("Activate PhoneNumber, Response sent: {}", responseEntity.toString());
                 return responseEntity;
             }

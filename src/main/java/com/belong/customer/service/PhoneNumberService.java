@@ -2,7 +2,7 @@ package com.belong.customer.service;
 
 import com.belong.customer.controller.PhoneNumberController;
 import com.belong.customer.dao.CustomerDao;
-import com.belong.customer.helper.CustomerHelper;
+import com.belong.customer.enums.PhoneNumberStateEnum;
 import com.belong.customer.helper.PhoneNumberHelper;
 import com.belong.customer.model.Customer;
 import com.belong.customer.model.Phone;
@@ -18,7 +18,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 @Service
 public class PhoneNumberService {
@@ -29,22 +28,18 @@ public class PhoneNumberService {
 
     private PhoneNumberHelper phoneNumberHelper;
 
-    private CustomerHelper customerHelper;
-
     @Autowired
     public PhoneNumberService(final CustomerDao customerDao,
-                              final PhoneNumberHelper phoneNumberHelper,
-                              final CustomerHelper customerHelper) {
+                              final PhoneNumberHelper phoneNumberHelper) {
         this.customerDao = customerDao;
         this.phoneNumberHelper = phoneNumberHelper;
-        this.customerHelper = customerHelper;
     }
 
-    public ResponseEntity<Object> getPhoneNumbers(final String customerId) {
+    public ResponseEntity<?> getPhoneNumbers(final String customerId) {
         LOGGER.info("Begin getPhoneNumbers PhoneNumberService");
 
         List<Phone> phoneList;
-        ResponseEntity<Object> responseEntity;
+        ResponseEntity<?> responseEntity;
 
         // If Customer ID is NULL
         if (!StringUtils.hasLength(customerId)) {
@@ -68,10 +63,10 @@ public class PhoneNumberService {
         return responseEntity;
     }
 
-    public ResponseEntity<Object> activatePhoneNumber(
+    public ResponseEntity<?> activatePhoneNumber(
             final String phoneNumber, final String state) {
 
-        ResponseEntity<Object> responseEntity;
+        ResponseEntity<?> responseEntity;
 
         Customer customer = customerDao.getCustomerByPhoneNumber(phoneNumber);
         if (ObjectUtils.isEmpty(customer)) {
@@ -84,6 +79,12 @@ public class PhoneNumberService {
         List<Phone> updatedPhoneList = new ArrayList<>();
         for (Phone phone : customer.getPhonesList()) {
             if (phone.getNumber().equals(phoneNumber)) {
+                if (phone.getState().equals(PhoneNumberStateEnum.ACTIVE.toString())) {
+                    responseEntity = phoneNumberHelper.createFailureResponse(
+                            HttpStatus.BAD_REQUEST.value(), "phone number already in active state");
+                    LOGGER.error("Activate PhoneNumber, Response sent: {}", responseEntity.toString());
+                    return responseEntity;
+                }
                 phone.setState(state);
             }
             updatedPhoneList.add(phone);

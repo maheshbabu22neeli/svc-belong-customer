@@ -34,10 +34,10 @@ public class CustomerController {
     }
 
     @GetMapping("/customers")
-    public ResponseEntity<Object> getCustomer(@RequestParam(required = false) final String customerId) {
+    public ResponseEntity<?> getCustomers(@RequestParam(required = false) final String customerId) {
         LOGGER.info("GET Customer, Request Received, where customerId: {}", customerId);
 
-        ResponseEntity<Object> responseEntity;
+        ResponseEntity<?> responseEntity;
         try {
             responseEntity = customerService.getCustomers(customerId);
             return responseEntity;
@@ -48,29 +48,6 @@ public class CustomerController {
                     HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong, please contact team");
 
             LOGGER.error("GET Customer, Response sent: {}", responseEntity.toString());
-            return responseEntity;
-        }
-    }
-
-    @PatchMapping(path = "/customers/{customerId}")
-    public ResponseEntity<Object> activatePhoneNumber(
-            @PathVariable final String customerId,
-            @RequestBody final JsonPatch jsonPatch) {
-        LOGGER.info("PATCH ActivatePhoneNumber, Request Received, where customerId: {}", customerId);
-
-        ResponseEntity<Object> responseEntity;
-        try {
-
-            responseEntity = customerService.activatePhoneNumber(customerId, jsonPatch);
-            return responseEntity;
-
-        } catch (final Exception exception) {
-            exception.printStackTrace();
-
-            responseEntity = customerHelper.createFailureResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong, please contact team");
-
-            LOGGER.error("PATCH ActivatePhoneNumber, Response sent: {}", responseEntity.toString());
             return responseEntity;
         }
     }
