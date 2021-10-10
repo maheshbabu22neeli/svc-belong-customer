@@ -4,8 +4,6 @@ import com.belong.customer.model.Customer;
 import com.belong.customer.model.Customers;
 import com.belong.customer.model.Phone;
 import com.belong.customer.utils.JsonUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

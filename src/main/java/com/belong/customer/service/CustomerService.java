@@ -4,11 +4,9 @@ import com.belong.customer.controller.PhoneNumberController;
 import com.belong.customer.dao.CustomerDao;
 import com.belong.customer.helper.CustomerHelper;
 import com.belong.customer.model.Customer;
-import com.belong.customer.model.CustomerResponse;
 import com.belong.customer.utils.JsonUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
 import org.slf4j.Logger;
@@ -20,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -79,7 +76,7 @@ public class CustomerService {
 
         JsonNode updatedJsonNode = jsonPatch.apply(customerJsonNode);
 
-        Customer updatedCustomer = JsonUtils.convertJsonNodeToModel(updatedJsonNode, Customer.class);
+        Customer updatedCustomer = JsonUtils.convertStringToModel(updatedJsonNode.toString(), Customer.class);
         if (ObjectUtils.isEmpty(updatedCustomer)) {
             responseEntity = customerHelper.createFailureResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong, please contact team");

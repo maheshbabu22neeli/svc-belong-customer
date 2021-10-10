@@ -6,8 +6,6 @@ import com.belong.customer.helper.CustomerHelper;
 import com.belong.customer.helper.PhoneNumberHelper;
 import com.belong.customer.model.Customer;
 import com.belong.customer.model.Phone;
-import com.belong.customer.model.PhoneNumberResponse;
-import com.belong.customer.model.State;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

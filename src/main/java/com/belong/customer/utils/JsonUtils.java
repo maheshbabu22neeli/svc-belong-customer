@@ -2,7 +2,6 @@ package com.belong.customer.utils;
 
 import com.belong.customer.model.Customer;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
@@ -51,10 +50,10 @@ public class JsonUtils {
         return null;
     }
 
-    public static Customer convertJsonNodeToModel(final JsonNode updatedJsonNode,
-                                                  final Class<Customer> customerClass) {
+    public static <T> T convertStringToModel(final String value,
+                                             final Class<T> customerClass) {
         try {
-            return MAPPER.readValue(updatedJsonNode.toString(), customerClass);
+            return MAPPER.readValue(value, customerClass);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
