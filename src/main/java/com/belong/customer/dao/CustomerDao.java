@@ -36,7 +36,6 @@ public class CustomerDao {
         customersMap = new HashMap<>();
         String customers = JsonUtils.readJsonFile(customerDataFilePath);
         List<Customer> customerList = JsonUtils.stringToModelList(customers, Customer.class);
-        assert customerList != null;
         customerList.forEach(customer -> customersMap.put(customer.getId(), customer));
     }
 
