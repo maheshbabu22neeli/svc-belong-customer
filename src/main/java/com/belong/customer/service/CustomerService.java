@@ -51,7 +51,7 @@ public class CustomerService {
 
             if (ObjectUtils.isEmpty(customer)) {
                 responseEntity = customerHelper.createFailureResponse(
-                        HttpStatus.NOT_FOUND.value(), "customer record not found");
+                        HttpStatus.NOT_FOUND.value(), "customer records not found");
                 LOGGER.error("GET Customer, Response sent: {}", responseEntity.toString());
 
             } else {

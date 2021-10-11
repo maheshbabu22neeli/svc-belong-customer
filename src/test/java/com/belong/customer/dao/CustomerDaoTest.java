@@ -24,12 +24,8 @@ public class CustomerDaoTest {
 
     @Before
     public void init() {
-        Map<String, Customer> customersMap = new HashMap<>();
-        Customers customers = JsonUtils.jsonFileToModel("/customerData/customers.json", Customers.class);
-        customers.getCustomerList().forEach(customer -> {
-            customersMap.put(customer.getId(), customer);
-        });
-        ReflectionTestUtils.setField(customerDao, "customersMap", customersMap);
+        ReflectionTestUtils.setField(customerDao, "customerDataFilePath", "/mockData/customers.json");
+        customerDao.loadInitialCustomers();
     }
 
     // ================================
@@ -57,6 +53,13 @@ public class CustomerDaoTest {
         List<Phone> phoneList = customerDao.getPhoneNumbersByCustomerId("CUS000");
 
         Assert.assertNull(phoneList);
+    }
+
+    @Test
+    public void test_getCustomerByPhoneNumber_return_null_customer() {
+        Customer customer = customerDao.getCustomerByPhoneNumber("0468002001");
+
+        Assert.assertNull(customer);
     }
 
     @Test
@@ -94,6 +97,14 @@ public class CustomerDaoTest {
     }
 
     @Test
+    public void test_getCustomers_return_no_customer() {
+
+        Customer customer = customerDao.getCustomerById("CUS000");
+
+        Assert.assertNull(customer);
+    }
+
+    @Test
     public void test_saveCustomer() {
         Customer customer = JsonUtils.jsonFileToModel("/mockData/new_customer.json", Customer.class);
 
@@ -105,11 +116,5 @@ public class CustomerDaoTest {
         Assert.assertEquals("Mahesh Babu 2", customer.getName());
         Assert.assertNotNull(customer.getPhonesList());
     }
-
-
-
-
-
-
 
 }

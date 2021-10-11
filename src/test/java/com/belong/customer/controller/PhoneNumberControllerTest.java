@@ -100,6 +100,30 @@ public class PhoneNumberControllerTest {
         Assert.assertEquals(15, phoneNumberResponse.getRecords().intValue());
     }
 
+    @Test
+    public void test_getPhoneNumbers_where_customerId_notnull_return_all_PhoneNumbers() {
+
+        String jsonString = JsonUtils.readJsonFile("/mockData/customer.json");
+        Customer mockCustomer = JsonUtils.stringToModel(jsonString, Customer.class);
+        Assert.assertNotNull(mockCustomer);
+
+        PhoneNumberResponse mockPhoneNumberResponse = new PhoneNumberResponse(mockCustomer.getPhonesList());
+        ResponseEntity<PhoneNumberResponse> mockResponseEntity = new ResponseEntity<>(mockPhoneNumberResponse,
+                HttpStatus.OK);
+
+        Mockito.doReturn(mockResponseEntity).when(phoneNumberService).getPhoneNumbers("CUS001");
+
+        ResponseEntity<?> responseEntity = phoneNumberController.getPhoneNumbers("CUS001");
+        PhoneNumberResponse phoneNumberResponse = (PhoneNumberResponse) responseEntity.getBody();
+
+        Assert.assertNotNull(responseEntity);
+        Assert.assertNotNull(phoneNumberResponse);
+        Assert.assertEquals(200, responseEntity.getStatusCodeValue());
+        Assert.assertEquals(3, phoneNumberResponse.getRecords().intValue());
+    }
+
+
+
     //===================================
     // Activation Number Test Cases
     //===================================

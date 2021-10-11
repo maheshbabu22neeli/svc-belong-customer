@@ -45,15 +45,6 @@ public class JsonUtils {
         return null;
     }
 
-    public static JsonNode convertModelToJsonNode(Customer customer) {
-        try {
-            return MAPPER.readValue(customer.toString(), JsonNode.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static <T> List<T> stringToModelList(String jsonString, Class<T> tClass) {
         CollectionType collectionType = MAPPER.getTypeFactory().constructCollectionType(ArrayList.class, tClass);
         try {

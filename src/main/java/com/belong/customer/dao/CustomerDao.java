@@ -31,10 +31,10 @@ public class CustomerDao {
     @PostConstruct
     public void loadInitialCustomers() {
         customersMap = new HashMap<>();
-        Customers customers = JsonUtils.jsonFileToModel(customerDataFilePath, Customers.class);
-        customers.getCustomerList().forEach(customer -> {
-            customersMap.put(customer.getId(), customer);
-        });
+        String customers = JsonUtils.readJsonFile(customerDataFilePath);
+        List<Customer> customerList = JsonUtils.stringToModelList(customers, Customer.class);
+        assert customerList != null;
+        customerList.forEach(customer -> customersMap.put(customer.getId(), customer));
     }
 
     /*=============================================
@@ -42,9 +42,7 @@ public class CustomerDao {
      *=============================================*/
     public List<Phone> getPhoneNumbers() {
         List<Phone> phoneList = new ArrayList<>();
-        customersMap.forEach((customerId, customer) -> {
-            phoneList.addAll(customer.getPhonesList());
-        });
+        customersMap.forEach((customerId, customer) -> phoneList.addAll(customer.getPhonesList()));
         return phoneList;
     }
 
@@ -59,11 +57,9 @@ public class CustomerDao {
     public Customer getCustomerByPhoneNumber(final String phoneNumber) {
         for (Map.Entry<String, Customer> customerEntry : customersMap.entrySet()) {
             Customer customer = customerEntry.getValue();
-            if (!ObjectUtils.isEmpty(customer)) {
-                for (Phone phone : customer.getPhonesList()) {
-                    if (phone.getNumber().equals(phoneNumber)) {
-                        return customer;
-                    }
+            for (Phone phone : customer.getPhonesList()) {
+                if (phone.getNumber().equals(phoneNumber)) {
+                    return customer;
                 }
             }
         }
@@ -75,9 +71,7 @@ public class CustomerDao {
      *=============================================*/
     public List<Customer> getCustomers() {
         List<Customer> customerList = new ArrayList<>();
-        customersMap.forEach((customerId, customer) -> {
-            customerList.add(customer);
-        });
+        customersMap.forEach((customerId, customer) -> customerList.add(customer));
         return customerList;
     }
 

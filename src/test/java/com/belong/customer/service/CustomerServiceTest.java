@@ -113,7 +113,7 @@ public class CustomerServiceTest {
 
         Mockito.doReturn(mockResponseEntity).when(customerHelper).createFailureResponse(mockCustomerResponse.getErrorCode(), mockCustomerResponse.getErrorMessage());
 
-        ResponseEntity<?> responseEntity = customerService.getCustomers(null);
+        ResponseEntity<?> responseEntity = customerService.getCustomers(customerId);
         CustomerResponse customerResponse = (CustomerResponse) responseEntity.getBody();
 
         Assert.assertNotNull(responseEntity);
