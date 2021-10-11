@@ -13,7 +13,7 @@ public class State extends AbstractModel {
     public State() {
     }
 
-    public State(String state) {
+    public State(final String state) {
         this.state = state;
     }
 
@@ -21,7 +21,7 @@ public class State extends AbstractModel {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(final String state) {
         this.state = state;
     }
 }

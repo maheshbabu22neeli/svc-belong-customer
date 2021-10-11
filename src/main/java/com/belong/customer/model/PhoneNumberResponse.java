@@ -22,17 +22,17 @@ public class PhoneNumberResponse extends AbstractModel {
 
     private Customer customer;
 
-    public PhoneNumberResponse(List<Phone> phoneList) {
+    public PhoneNumberResponse(final List<Phone> phoneList) {
         this.phoneList = phoneList;
         this.records = phoneList.size();
     }
 
-    public PhoneNumberResponse(Integer errorCode, String errorMessage) {
+    public PhoneNumberResponse(final Integer errorCode, final String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
-    public PhoneNumberResponse(Customer customer) {
+    public PhoneNumberResponse(final Customer customer) {
         this.customer = customer;
     }
 
@@ -40,7 +40,7 @@ public class PhoneNumberResponse extends AbstractModel {
         return records;
     }
 
-    public void setRecords(Integer records) {
+    public void setRecords(final Integer records) {
         this.records = records;
     }
 
@@ -48,7 +48,7 @@ public class PhoneNumberResponse extends AbstractModel {
         return phoneList;
     }
 
-    public void setPhoneList(List<Phone> phoneList) {
+    public void setPhoneList(final List<Phone> phoneList) {
         this.phoneList = phoneList;
     }
 
@@ -56,7 +56,7 @@ public class PhoneNumberResponse extends AbstractModel {
         return errorCode;
     }
 
-    public void setErrorCode(Integer errorCode) {
+    public void setErrorCode(final Integer errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -64,7 +64,7 @@ public class PhoneNumberResponse extends AbstractModel {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
+    public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
@@ -72,7 +72,7 @@ public class PhoneNumberResponse extends AbstractModel {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(final Customer customer) {
         this.customer = customer;
     }
 }

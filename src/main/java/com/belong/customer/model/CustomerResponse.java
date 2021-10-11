@@ -20,12 +20,12 @@ public class CustomerResponse extends AbstractModel {
 
     private String errorMessage;
 
-    public CustomerResponse(List<Customer> customerList) {
+    public CustomerResponse(final List<Customer> customerList) {
         this.customerList = customerList;
         this.records = customerList.size();
     }
 
-    public CustomerResponse(Integer errorCode, String errorMessage) {
+    public CustomerResponse(final Integer errorCode, final String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
@@ -34,7 +34,7 @@ public class CustomerResponse extends AbstractModel {
         return records;
     }
 
-    public void setRecords(Integer records) {
+    public void setRecords(final Integer records) {
         this.records = records;
     }
 
@@ -42,7 +42,7 @@ public class CustomerResponse extends AbstractModel {
         return customerList;
     }
 
-    public void setCustomerList(List<Customer> customerList) {
+    public void setCustomerList(final List<Customer> customerList) {
         this.customerList = customerList;
     }
 
@@ -50,7 +50,7 @@ public class CustomerResponse extends AbstractModel {
         return errorCode;
     }
 
-    public void setErrorCode(Integer errorCode) {
+    public void setErrorCode(final Integer errorCode) {
         this.errorCode = errorCode;
     }
 
@@ -58,7 +58,7 @@ public class CustomerResponse extends AbstractModel {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
+    public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 }

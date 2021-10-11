@@ -22,6 +22,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.regex.Pattern;
 
+/*PhoneNumberController is an api interface for phoneNumber related functionalities
+It exposed an end-point
+        1. /v1/belong/phonenumbers
+            Which retrieves all the phonenumbers details
+        2. /v1/belong/phonenumbers?customerId={{customerId}}
+            Which retrieves a customer phonenumbers details based on customerId
+*/
+
 @RestController
 @RequestMapping("${service.basePath}")
 public class PhoneNumberController {
@@ -39,6 +47,10 @@ public class PhoneNumberController {
         this.phoneNumberHelper = phoneNumberHelper;
     }
 
+    /**
+     * @param customerId
+     * @return
+     */
     @GetMapping(path = "/phonenumbers")
     public ResponseEntity<?> getPhoneNumbers(
             @RequestParam(required = false) final String customerId) {
@@ -68,6 +80,11 @@ public class PhoneNumberController {
         }
     }
 
+    /**
+     * @param phoneNumber
+     * @param state
+     * @return
+     */
     @PatchMapping(path = "/phoneNumbers/{phoneNumber}")
     public ResponseEntity<?> activatePhoneNumber(
             @PathVariable String phoneNumber, @RequestBody State state) {

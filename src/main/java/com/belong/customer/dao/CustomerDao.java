@@ -15,6 +15,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
+/*
+Assuming that CustomerDao is our DB interface class, where it fetches all the DB records from the given DB.
+*/
+
 @Service
 public class CustomerDao {
 
@@ -46,6 +50,10 @@ public class CustomerDao {
         return phoneList;
     }
 
+    /**
+     * @param customerId
+     * @return
+     */
     public List<Phone> getPhoneNumbersByCustomerId(final String customerId) {
         Customer customer = customersMap.get(customerId);
         if (ObjectUtils.isEmpty(customer)) {
@@ -54,6 +62,10 @@ public class CustomerDao {
         return customer.getPhonesList();
     }
 
+    /**
+     * @param phoneNumber
+     * @return
+     */
     public Customer getCustomerByPhoneNumber(final String phoneNumber) {
         for (Map.Entry<String, Customer> customerEntry : customersMap.entrySet()) {
             Customer customer = customerEntry.getValue();
@@ -75,10 +87,17 @@ public class CustomerDao {
         return customerList;
     }
 
+    /**
+     * @param customerId
+     * @return
+     */
     public Customer getCustomerById(final String customerId) {
         return customersMap.get(customerId);
     }
 
+    /**
+     * @param customer
+     */
     public void saveCustomer(final Customer customer) {
         customersMap.put(customer.getId(), customer);
     }

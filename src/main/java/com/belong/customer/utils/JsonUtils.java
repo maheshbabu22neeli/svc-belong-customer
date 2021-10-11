@@ -1,9 +1,6 @@
 package com.belong.customer.utils;
 
-import com.belong.customer.model.Customer;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import org.springframework.core.io.ClassPathResource;
@@ -15,15 +12,29 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+JsonUtils class is defined to make ourself easy while dealing with Model functionalities
+*/
+
 public class JsonUtils {
 
     private static ObjectMapper MAPPER = new ObjectMapper();
 
+    /**
+     * @param filePath
+     * @param tClass
+     * @param <T>
+     * @return
+     */
     public static <T> T jsonFileToModel(final String filePath, final Class<T> tClass) {
         String jsonContent = readJsonFile(filePath);
         return stringToModel(jsonContent, tClass);
     }
 
+    /**
+     * @param path
+     * @return
+     */
     public static String readJsonFile(final String path) {
         try {
             ClassPathResource classPathResource = new ClassPathResource(path);
@@ -36,6 +47,12 @@ public class JsonUtils {
         return null;
     }
 
+    /**
+     * @param json
+     * @param tClass
+     * @param <T>
+     * @return
+     */
     public static <T> T stringToModel(final String json, final Class<T> tClass) {
         try {
             return MAPPER.readValue(json, tClass);
@@ -45,7 +62,13 @@ public class JsonUtils {
         return null;
     }
 
-    public static <T> List<T> stringToModelList(String jsonString, Class<T> tClass) {
+    /**
+     * @param jsonString
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> stringToModelList(final String jsonString, final Class<T> tClass) {
         CollectionType collectionType = MAPPER.getTypeFactory().constructCollectionType(ArrayList.class, tClass);
         try {
             return MAPPER.readValue(jsonString, collectionType);

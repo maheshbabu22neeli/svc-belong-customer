@@ -16,6 +16,10 @@ import org.springframework.util.StringUtils;
 
 import java.util.List;
 
+/*
+CustomerService class is derived for business logic, where every decision making things will happen
+* */
+
 @Service
 public class CustomerService {
 
@@ -31,6 +35,10 @@ public class CustomerService {
         this.customerHelper = customerHelper;
     }
 
+    /**
+     * @param customerId
+     * @return
+     */
     public ResponseEntity<?> getCustomers(final String customerId) {
 
         ResponseEntity<?> responseEntity;

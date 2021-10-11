@@ -19,6 +19,10 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+PhoneNumberService class is derived for business logic, where every decision making things will happen
+* */
+
 @Service
 public class PhoneNumberService {
 
@@ -28,6 +32,10 @@ public class PhoneNumberService {
 
     private PhoneNumberHelper phoneNumberHelper;
 
+    /**
+     * @param customerDao
+     * @param phoneNumberHelper
+     */
     @Autowired
     public PhoneNumberService(final CustomerDao customerDao,
                               final PhoneNumberHelper phoneNumberHelper) {
@@ -63,6 +71,11 @@ public class PhoneNumberService {
         return responseEntity;
     }
 
+    /**
+     * @param phoneNumber
+     * @param state
+     * @return
+     */
     public ResponseEntity<?> activatePhoneNumber(
             final String phoneNumber, final String state) {
 

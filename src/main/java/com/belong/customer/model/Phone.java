@@ -18,7 +18,7 @@ public class Phone extends AbstractModel {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(final String number) {
         this.number = number;
     }
 
@@ -34,7 +34,7 @@ public class Phone extends AbstractModel {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(final String state) {
         this.state = state;
     }
 }
