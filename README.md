@@ -27,8 +27,6 @@ or
     The above two command will run the application from the command line
 ```
 
-
-
 #### Functionalities
 ##### Initial Customer Details
 ```
@@ -85,6 +83,8 @@ collection : svc-belong-customer/svc-belong-customer.postman_collection
 #### Jacoco Coverage Report
 ```
 In this application used Jacoco Plug-In to verify the coverage report, can found after the build under: target/site/jacoco/index.html
+To buidl and generate report, please type below command
+> mvn clean install
 ```
 
 
