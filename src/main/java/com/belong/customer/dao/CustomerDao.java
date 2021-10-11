@@ -1,7 +1,6 @@
 package com.belong.customer.dao;
 
 import com.belong.customer.model.Customer;
-import com.belong.customer.model.Customers;
 import com.belong.customer.model.Phone;
 import com.belong.customer.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
 
 /*
 Assuming that CustomerDao is our DB interface class, where it fetches all the DB records from the given DB.
