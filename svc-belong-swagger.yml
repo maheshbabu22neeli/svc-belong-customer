@@ -6,11 +6,11 @@ servers:
 info:
   version: v1.0.0
   title: svc-belong-customer
-  description: ''
+  description: This swagger defines a list of functionalities for belong front-end developer, where they can develop an interface for easy access of customer and phone number details
   termsOfService: ''
   contact: {}
   license:
-    name: ''
+    name: Mahesh License
 paths:
   /v1/belong/phonenumbers:
     get:
