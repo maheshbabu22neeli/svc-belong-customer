@@ -44,7 +44,6 @@ public class PhoneNumberService {
     }
 
     public ResponseEntity<?> getPhoneNumbers(final String customerId) {
-        LOGGER.info("Begin getPhoneNumbers PhoneNumberService");
 
         List<Phone> phoneList;
         ResponseEntity<?> responseEntity;
@@ -60,14 +59,13 @@ public class PhoneNumberService {
         if (!CollectionUtils.isEmpty(phoneList)) {
             // Creates Success PhoneNumberResponse
             responseEntity = phoneNumberHelper.createSuccessResponse(phoneList, HttpStatus.OK);
-            LOGGER.info("GET PhoneNumber, Response sent: {}", responseEntity.toString());
         } else {
             // Creates Error PhoneNumberResponse
             responseEntity = phoneNumberHelper.createFailureResponse(
                     HttpStatus.NOT_FOUND.value(), "customerId Not Found");
-            LOGGER.error("GET PhoneNumber, Response sent: {}", responseEntity.toString());
         }
 
+        LOGGER.info("GET PhoneNumber, Response sent: {}", responseEntity.toString());
         return responseEntity;
     }
 
@@ -75,6 +73,7 @@ public class PhoneNumberService {
      * @param phoneNumber
      * @param state
      * @return
+     *
      */
     public ResponseEntity<?> activatePhoneNumber(
             final String phoneNumber, final String state) {

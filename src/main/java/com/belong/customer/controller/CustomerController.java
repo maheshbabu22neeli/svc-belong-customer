@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*CustomerController is an api interface for customer related functionalities
-It exposed an end-point
+It exposed end-point as below
         1. /v1/belong/customers
             Which retrieves all the customer details
         2. /v1/belong/customers?customerId={{customerId}}

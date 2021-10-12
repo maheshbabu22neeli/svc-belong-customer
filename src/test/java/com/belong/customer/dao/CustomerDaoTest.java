@@ -32,6 +32,12 @@ public class CustomerDaoTest {
     // PhoneNumber Test Cases
     // ================================
 
+    @Test(expected = IllegalArgumentException.class)
+    public void test_loadInitialCustomers_throws_IllegalArgumentException() {
+        ReflectionTestUtils.setField(customerDao, "customerDataFilePath", "/mockData/no_customers.json");
+        customerDao.loadInitialCustomers();
+    }
+
     @Test
     public void test_getPhoneNumbers_return_all_phoneNumbers() {
         List<Phone> phoneList = customerDao.getPhoneNumbers();

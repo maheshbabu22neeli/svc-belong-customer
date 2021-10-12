@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.regex.Pattern;
 
 /*PhoneNumberController is an api interface for phoneNumber related functionalities
-It exposed an end-point
+It exposed end-points as below
         1. /v1/belong/phonenumbers
             Which retrieves all the phonenumbers details
         2. /v1/belong/phonenumbers?customerId={{customerId}}

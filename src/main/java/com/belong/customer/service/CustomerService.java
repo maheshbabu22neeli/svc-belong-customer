@@ -48,10 +48,8 @@ public class CustomerService {
             if (CollectionUtils.isEmpty(customerList)) {
                 responseEntity = customerHelper.createFailureResponse(
                         HttpStatus.NOT_FOUND.value(), "customer records not found");
-                LOGGER.error("GET Customer, Response sent: {}", responseEntity.toString());
             } else {
                 responseEntity = customerHelper.createSuccessResponse(customerList, HttpStatus.OK);
-                LOGGER.info("GET Customer, Response sent: {}", responseEntity.toString());
             }
 
         } else {
@@ -60,14 +58,12 @@ public class CustomerService {
             if (ObjectUtils.isEmpty(customer)) {
                 responseEntity = customerHelper.createFailureResponse(
                         HttpStatus.NOT_FOUND.value(), "customer records not found");
-                LOGGER.error("GET Customer, Response sent: {}", responseEntity.toString());
-
             } else {
                 responseEntity = customerHelper.createSuccessResponse(customer, HttpStatus.OK);
-                LOGGER.info("GET Customer, Response sent: {}", responseEntity.toString());
             }
         }
 
+        LOGGER.info("GET Customer, Response sent: {}", responseEntity.toString());
         return responseEntity;
     }
 

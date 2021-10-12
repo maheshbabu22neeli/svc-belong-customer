@@ -515,13 +515,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/400"
                 },
-                "example": {
-                  "errorCode": 400,
-                  "errorMessage": "invalid phoneNumber, required format [0-9]{10}"
-                }
+                "example": [
+                  {
+                    "errorCode": 400,
+                    "errorMessage": "invalid phoneNumber, required format [0-9]{10}"
+                  }
+                ]
               }
             }
           },
+
           "500": {
             "description": "Activate PhoneNumber Method 2",
             "content": {

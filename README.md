@@ -13,14 +13,17 @@ svc-belong-customer is a sample Microservice which provides the below functional
 #### Prerequisites
 * Java 11
 * Maven
+* GitBash or CMD
 
 #### Build and Run
 ```
 Apply below command to Build and Run the Application.
 
+Build:
 > mvn clean install
     The above command will build the application and create a jar file with name 'svc-belong-customer-<version>-SNAPSHOT.jar'
 
+Run:
 > mvn spring-boot:run
 or
 > java -jar target/svc-belong-customer-1.0.0-SNAPSHOT.jar
@@ -31,7 +34,7 @@ or
 ##### Initial Customer Details
 ```
 Assume that the application is already inprogress and it holds a list of customers in DB.
-To achieve this, the application will load a list of customers with their phone numbers from local /src/java/resources/customerData/customers.json
+To achieve this, the application will load a list of customers with their phone numbers from local /src/java/resources/customerData/customers.json to the given repository.
 
 ```
 
@@ -47,13 +50,14 @@ curl --location --request GET 'http://localhost:8080/v1/belong/phonenumbers?cust
 
 ##### Activate a given number
 ```
-For this functionality, please use the Method-2 api call from the postman collection.
+There are two API's in the swagger, please use Method-2(can find same in postman collection)
 
 curl --location --request PATCH 'http://localhost:8080/v1/belong/phoneNumbers/0469001001' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "state" : "Active"
 }'
+
 ```
 ##### List all Customers
 ```
@@ -67,7 +71,7 @@ curl --location --request GET 'http://localhost:8080/v1/belong/customers?custome
 
 #### Swagger Details
 ```
-Swagger Details are placed in the root project
+Swagger Details are placed in the root project:
 json: svc-belong-customer/svc-belong-customer.json
 yml: svc-belong-customer/svc-belong-customer.yml
 
@@ -83,7 +87,7 @@ collection : svc-belong-customer/svc-belong-customer.postman_collection
 #### Jacoco Coverage Report
 ```
 In this application used Jacoco Plug-In to verify the coverage report, can found after the build under: target/site/jacoco/index.html
-To buidl and generate report, please type below command
+To buidl and generate report, please running below command
 > mvn clean install
 ```
 
